@@ -150,7 +150,7 @@
       </div>
     </div>
 
-    <div class="fixed bottom-[115px] md:bottom-[130px] left-1/2 -translate-x-1/2 z-[60] pointer-events-none w-[94%] md:w-full max-w-2xl px-1 flex justify-center">
+    <div class="fixed bottom-[135px] md:bottom-[150px] left-1/2 -translate-x-1/2 z-[60] pointer-events-none w-[94%] md:w-full max-w-2xl px-1 flex justify-center">
       <div id="feedbackText" class="text-[12px] md:text-lg leading-tight md:leading-snug font-semibold px-5 py-3 md:py-4 rounded-2xl shadow-2xl border backdrop-blur-xl transition-all duration-300 opacity-100 bg-slate-800/90 text-slate-200 border-slate-600 text-center flex flex-col gap-1 items-center justify-center w-full">
       </div>
     </div>
@@ -547,11 +547,7 @@
   });
   DOM.resetBtn.addEventListener('click', clearCanvas);
   
-  // Update ukuran dan atur ulang layout saat layar di-resize atau orientasi diputar (potrait/landscape)
-  window.addEventListener('resize', () => {
-    arrangeAutoBoxes();
-  });
-  
+  window.addEventListener('resize', arrangeAutoBoxes);
   window.addEventListener('DOMContentLoaded', () => { lucide.createIcons(); });
   </script>
 </body>
