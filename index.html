@@ -2,7 +2,7 @@
 <html lang="id" class="h-full">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Eksplorasi Matematika - Dot & Box</title>
   
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
@@ -12,9 +12,9 @@
   <style>
     :root {
       /* Ukuran elemen disesuaikan secara dinamis via CSS Variables */
-      --box-size: 110px;
-      --dot-size: 32px;
-      --dot-inside: 28px;
+      --box-size: 100px;
+      --dot-size: 30px;
+      --dot-inside: 26px;
     }
     @media (min-width: 768px) {
       :root {
@@ -55,7 +55,7 @@
       background: rgba(255, 255, 255, 0.05); border: 3px dashed rgba(255, 255, 255, 0.3);
       cursor: grab; z-index: 20; backdrop-filter: blur(4px);
       transition: border-color 0.2s, background-color 0.2s, transform 0.2s, left 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), top 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-      display: flex; flex-wrap: wrap; align-content: flex-start; justify-content: center; gap: 8px; padding: 10px;
+      display: flex; flex-wrap: wrap; align-content: flex-start; justify-content: center; gap: 6px; padding: 10px;
       will-change: transform, left, top;
     }
     .box:hover { border-color: rgba(255,255,255,0.6); background: rgba(255, 255, 255, 0.08); }
@@ -66,7 +66,7 @@
     }
 
     .spawner-panel {
-      display: flex; border-radius: 24px;
+      display: flex; border-radius: 20px;
       background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(16px);
       border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 32px rgba(0,0,0,0.3);
     }
@@ -93,28 +93,28 @@
 <body class="relative">
   <div class="grid-bg"></div>
 
-  <div id="coverScreen" class="absolute inset-0 z-[1000] flex items-center justify-center backdrop-blur-md bg-slate-900/80">
-    <div class="bg-slate-800/90 backdrop-blur-2xl border border-white/10 p-8 md:p-14 rounded-[2.5rem] shadow-2xl text-center flex flex-col items-center max-w-2xl w-11/12">
-      <div class="flex gap-6 mb-6 md:mb-8">
+  <div id="coverScreen" class="absolute inset-0 z-[1000] flex items-center justify-center backdrop-blur-md bg-slate-900/80 p-4">
+    <div class="bg-slate-800/90 backdrop-blur-2xl border border-white/10 p-8 md:p-14 rounded-[2.5rem] shadow-2xl text-center flex flex-col items-center max-w-2xl w-full">
+      <div class="flex gap-4 md:gap-6 mb-6">
         <div class="w-16 h-16 md:w-20 md:h-20 rounded-2xl border-4 dashed border-indigo-400 bg-indigo-500/20 float-anim flex items-center justify-center shadow-lg shadow-indigo-500/20">
           <i data-lucide="x" class="w-8 h-8 md:w-10 md:h-10 text-indigo-300"></i>
         </div>
         <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-tr from-amber-500 to-rose-400 float-anim-delay flex items-center justify-center shadow-lg shadow-rose-500/30">
-          <span class="text-2xl md:text-3xl font-bold text-white tracking-tighter">÷</span>
+          <span class="text-3xl font-bold text-white tracking-tighter">÷</span>
         </div>
       </div>
-      <h2 class="text-sm md:text-lg font-bold text-amber-400 tracking-widest uppercase mb-2 opacity-90">Eksplorasi Matematika</h2>
-      <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-1 md:mb-2 drop-shadow-lg tracking-tight">Dot & Box</h1>
+      <h2 class="text-xs md:text-lg font-bold text-amber-400 tracking-widest uppercase mb-2 opacity-90">Eksplorasi Matematika</h2>
+      <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-2 drop-shadow-lg tracking-tight">Dot & Box</h1>
       <p class="text-sm md:text-lg font-medium text-slate-400 tracking-wider mb-8">By <span class="text-indigo-400 font-bold">Mathnology</span></p>
       
-      <div class="flex flex-col w-full gap-4 md:flex-row justify-center">
-        <button id="btnMultiplication" class="flex-1 py-4 px-6 bg-indigo-500 hover:bg-indigo-400 text-white rounded-2xl font-bold text-base md:text-lg shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:shadow-[0_0_30px_rgba(99,102,241,0.5)] transition-all hover:-translate-y-1 active:scale-95 flex flex-col items-center gap-1 border border-indigo-400/50">
+      <div class="flex flex-col w-full gap-3 md:flex-row justify-center">
+        <button id="btnMultiplication" class="w-full py-4 px-6 bg-indigo-500 hover:bg-indigo-400 text-white rounded-2xl font-bold text-lg shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:shadow-[0_0_30px_rgba(99,102,241,0.5)] transition-all hover:-translate-y-1 active:scale-95 flex flex-col items-center gap-1 border border-indigo-400/50">
           <span class="flex items-center gap-2"><i data-lucide="x" class="w-5 h-5"></i> Perkalian</span>
-          <span class="text-[11px] md:text-xs font-medium text-indigo-100 opacity-80 font-normal tracking-wide">Konsep Penjumlahan</span>
+          <span class="text-xs font-medium text-indigo-100 opacity-80 font-normal tracking-wide">Konsep Penjumlahan</span>
         </button>
-        <button id="btnDivision" class="flex-1 py-4 px-6 bg-teal-500 hover:bg-teal-400 text-white rounded-2xl font-bold text-base md:text-lg shadow-[0_0_20px_rgba(20,184,166,0.3)] hover:shadow-[0_0_30px_rgba(20,184,166,0.5)] transition-all hover:-translate-y-1 active:scale-95 flex flex-col items-center gap-1 border border-teal-400/50">
+        <button id="btnDivision" class="w-full py-4 px-6 bg-teal-500 hover:bg-teal-400 text-white rounded-2xl font-bold text-lg shadow-[0_0_20px_rgba(20,184,166,0.3)] hover:shadow-[0_0_30px_rgba(20,184,166,0.5)] transition-all hover:-translate-y-1 active:scale-95 flex flex-col items-center gap-1 border border-teal-400/50">
           <span class="flex items-center gap-2"><span class="text-xl leading-none font-bold">÷</span> Pembagian</span>
-          <span class="text-[11px] md:text-xs font-medium text-teal-100 opacity-80 font-normal tracking-wide">Konsep Pengurangan</span>
+          <span class="text-xs font-medium text-teal-100 opacity-80 font-normal tracking-wide">Konsep Pengurangan</span>
         </button>
       </div>
     </div>
@@ -123,27 +123,21 @@
   <div id="gameScreen" class="hidden w-full h-full absolute inset-0">
     <div id="canvas"></div>
 
-    <div class="fixed top-4 left-4 md:top-8 md:left-8 z-50 pointer-events-none">
-      <button id="homeBtn" class="pointer-events-auto bg-slate-800/80 hover:bg-slate-700 backdrop-blur-md border border-white/10 p-3 md:px-4 md:py-2.5 rounded-xl md:rounded-xl flex items-center justify-center gap-2 shadow-lg text-white font-semibold text-sm transition-colors w-fit">
-        <i data-lucide="home" class="w-5 h-5 md:w-4 md:h-4"></i> <span class="hidden md:inline">Menu Utama</span>
-      </button>
-    </div>
-
     <div class="fixed top-4 right-4 md:top-8 md:right-8 w-14 h-14 md:w-16 md:h-16 bg-slate-800 border border-red-500/50 rounded-full flex items-center justify-center z-[300] opacity-0 scale-90 pointer-events-none delete-zone" id="deleteZone">
       <i data-lucide="trash-2" class="w-6 h-6 md:w-7 md:h-7 text-red-400"></i>
     </div>
 
-    <div class="fixed top-4 md:top-8 left-1/2 -translate-x-1/2 z-50 flex flex-col items-center pointer-events-none w-11/12 max-w-4xl">
-      <div class="bg-slate-900/70 backdrop-blur-xl border border-white/10 py-3 px-4 md:py-4 md:px-12 rounded-3xl shadow-2xl flex flex-col items-center gap-1 w-full text-center">
+    <div class="fixed top-4 md:top-8 left-1/2 -translate-x-1/2 z-50 flex flex-col items-center pointer-events-none w-[90%] max-w-4xl">
+      <div class="bg-slate-900/80 backdrop-blur-xl border border-white/10 py-3 px-4 md:py-4 md:px-12 rounded-2xl md:rounded-3xl shadow-2xl flex flex-col items-center gap-1 w-full text-center">
         <h2 id="modeTitle" class="text-[10px] md:text-sm font-semibold tracking-widest uppercase opacity-90">Selesaikan Soal</h2>
         <h1 id="problemTitle" class="text-3xl md:text-5xl font-extrabold text-white drop-shadow-lg transition-all leading-tight my-1">2 × 3 = ?</h1>
         
         <div class="flex gap-2 md:gap-3 mt-1 md:mt-2">
-          <div class="bg-slate-800/80 border border-white/10 px-3 py-1.5 md:px-4 md:py-2 rounded-xl flex items-center gap-2 shadow-inner">
+          <div class="bg-slate-800/80 border border-white/10 px-3 py-1 md:px-4 md:py-2 rounded-lg flex items-center gap-2 shadow-inner">
             <div class="w-3 h-3 md:w-4 md:h-4 rounded-[4px] border-2 dashed border-indigo-400"></div>
             <span id="boxCountText" class="text-white font-semibold text-[11px] md:text-sm">0 Kotak</span>
           </div>
-          <div class="bg-slate-800/80 border border-white/10 px-3 py-1.5 md:px-4 md:py-2 rounded-xl flex items-center gap-2 shadow-inner">
+          <div class="bg-slate-800/80 border border-white/10 px-3 py-1 md:px-4 md:py-2 rounded-lg flex items-center gap-2 shadow-inner">
             <div class="w-3 h-3 md:w-4 md:h-4 rounded-full bg-gradient-to-tr from-amber-500 to-rose-400"></div>
             <span id="dotCountText" class="text-white font-semibold text-[11px] md:text-sm">0 Titik</span>
           </div>
@@ -151,37 +145,41 @@
       </div>
     </div>
 
-    <div class="fixed bottom-[110px] md:bottom-36 left-1/2 -translate-x-1/2 z-[60] pointer-events-none w-[95%] md:w-full px-2 md:px-4 flex justify-center">
-      <div id="feedbackText" class="text-[13px] md:text-lg leading-snug font-semibold px-6 py-3 rounded-2xl shadow-2xl border backdrop-blur-xl transition-all duration-300 opacity-100 bg-slate-800/90 text-slate-200 border-slate-600 text-center flex flex-col gap-1 items-center justify-center max-w-3xl">
+    <div class="fixed bottom-[105px] md:bottom-[120px] left-1/2 -translate-x-1/2 z-[60] pointer-events-none w-[92%] md:w-full px-2 flex justify-center">
+      <div id="feedbackText" class="text-[12px] md:text-lg leading-tight md:leading-snug font-semibold px-5 py-3 md:py-4 rounded-2xl shadow-2xl border backdrop-blur-xl transition-all duration-300 opacity-100 bg-slate-800/90 text-slate-200 border-slate-600 text-center flex flex-col gap-1 items-center justify-center max-w-3xl w-full">
       </div>
     </div>
 
-    <div class="fixed bottom-4 md:bottom-8 w-full px-4 md:px-8 flex justify-between items-end z-50 pointer-events-none">
+    <div class="fixed bottom-4 md:bottom-6 w-full px-3 md:px-8 flex justify-between items-end z-50 pointer-events-none">
       
-      <div class="pointer-events-auto flex justify-start pb-1 md:pb-0">
-        <button id="resetBtn" class="p-3 md:py-3 md:px-5 bg-slate-800 hover:bg-rose-500 text-white rounded-[1rem] md:rounded-2xl font-bold shadow-lg shadow-slate-900/40 border border-white/10 hover:border-rose-400 transition-all active:scale-95 flex items-center gap-2">
-          <i data-lucide="refresh-ccw" class="w-6 h-6 md:w-5 md:h-5"></i> <span class="hidden md:inline">Bersihkan</span>
+      <div class="pointer-events-auto flex flex-col gap-2 w-[75px] md:w-[150px]">
+        <button id="homeBtn" class="py-2 px-1 md:py-3 md:px-4 bg-slate-800 hover:bg-slate-700 text-white rounded-xl md:rounded-2xl font-bold shadow-lg border border-white/10 transition-all active:scale-95 flex flex-col md:flex-row items-center justify-center gap-1 md:gap-2 w-full">
+          <i data-lucide="home" class="w-5 h-5 md:w-5 md:h-5"></i> <span class="text-[9px] md:text-sm">Menu</span>
+        </button>
+        <button id="resetBtn" class="py-2 px-1 md:py-3 md:px-4 bg-slate-800 hover:bg-rose-500 text-white rounded-xl md:rounded-2xl font-bold shadow-lg border border-white/10 hover:border-rose-400 transition-all active:scale-95 flex flex-col md:flex-row items-center justify-center gap-1 md:gap-2 w-full">
+          <i data-lucide="refresh-ccw" class="w-5 h-5 md:w-5 md:h-5"></i> <span class="text-[9px] md:text-sm">Hapus</span>
         </button>
       </div>
 
-      <div class="pointer-events-auto flex flex-col items-center gap-2 md:gap-3">
-        <span class="text-[9px] md:text-xs font-medium text-slate-400 uppercase tracking-widest bg-slate-900/60 px-3 py-1 rounded-full backdrop-blur-sm">Tambahkan Elemen</span>
-        <div class="spawner-panel gap-6 md:gap-24 px-6 md:px-12 py-3 md:py-4" id="spawnerPanelContainer">
+      <div class="pointer-events-auto flex flex-col items-center gap-1.5 md:gap-3">
+        <span class="text-[9px] md:text-xs font-bold text-slate-400 uppercase tracking-widest bg-slate-900/60 px-3 py-1 rounded-full backdrop-blur-sm">Alat</span>
+        <div class="spawner-panel flex items-center gap-5 md:gap-16 px-5 md:px-10 py-2 md:py-4 rounded-2xl md:rounded-3xl" id="spawnerPanelContainer">
           <div class="spawner-item" id="spawnBox">
-            <div class="w-10 h-9 md:w-12 md:h-11 spawner-box-preview hover:scale-105 transition-transform"></div>
-            <span class="text-[9px] md:text-[11px] font-bold text-slate-300 tracking-wide mt-1">KLIK KOTAK</span>
+            <div class="w-10 h-10 md:w-12 md:h-12 spawner-box-preview hover:scale-105 transition-transform flex items-center justify-center"></div>
+            <span class="text-[9px] md:text-[11px] font-bold text-slate-300 tracking-wide">KOTAK</span>
           </div>
-          <div class="w-[1px] h-10 md:h-12 bg-white/10"></div>
+          <div class="w-[1px] h-10 md:h-12 bg-white/20"></div>
           <div class="spawner-item" id="spawnDot">
-            <div class="w-9 h-9 md:w-11 md:h-11 spawner-dot-preview"></div>
-            <span class="text-[9px] md:text-[11px] font-bold text-slate-300 tracking-wide mt-1">TARIK TITIK</span>
+            <div class="w-9 h-9 md:w-11 md:h-11 spawner-dot-preview flex items-center justify-center"></div>
+            <span class="text-[9px] md:text-[11px] font-bold text-slate-300 tracking-wide">TITIK</span>
           </div>
         </div>
       </div>
       
-      <div class="pointer-events-auto flex justify-end pb-1 md:pb-0">
-        <button id="nextProblemBtn" class="p-3 md:py-3 md:px-5 text-white rounded-[1rem] md:rounded-2xl font-bold shadow-lg transition-all active:scale-95 flex items-center gap-2">
-          <span class="hidden md:inline">Soal Lanjut</span> <i data-lucide="arrow-right" class="w-6 h-6 md:w-5 md:h-5"></i>
+      <div class="pointer-events-auto w-[75px] md:w-[150px] flex justify-end">
+        <button id="nextProblemBtn" class="py-2 px-1 md:py-3 md:px-4 bg-indigo-500 text-white rounded-xl md:rounded-2xl font-bold shadow-lg transition-all active:scale-95 flex flex-col md:flex-row items-center justify-center gap-1 md:gap-2 w-full h-full min-h-[85px] md:min-h-0">
+          <i data-lucide="arrow-right" class="w-6 h-6 md:w-5 md:h-5"></i>
+          <span class="text-[9px] md:text-sm">Lanjut</span>
         </button>
       </div>
     </div>
@@ -241,13 +239,13 @@
   
   const DOT_COLORS = ['#f43f5e','#8b5cf6','#06b6d4','#22c55e','#f59e0b','#ec4899','#3b82f6','#14b8a6'];
   const BOX_COLORS = ['rgba(139,92,246,0.15)','rgba(6,182,212,0.15)','rgba(34,197,94,0.15)','rgba(245,158,11,0.15)','rgba(236,72,153,0.15)','rgba(59,130,246,0.15)'];
-  const baseFeedbackClass = "text-[13px] md:text-lg leading-snug font-semibold px-6 py-3 rounded-2xl shadow-2xl border backdrop-blur-xl transition-all duration-300 text-center flex flex-col gap-1 items-center justify-center max-w-3xl ";
+  const baseFeedbackClass = "text-[12px] md:text-lg leading-tight md:leading-snug font-semibold px-5 py-3 md:py-4 rounded-2xl shadow-2xl border backdrop-blur-xl transition-all duration-300 text-center flex flex-col gap-1 items-center justify-center max-w-3xl w-full ";
 
   const nextId = () => ++idCounter;
   const randItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
-  const getBoxSize = () => window.innerWidth < 768 ? 110 : 140;
-  const getDotSize = () => window.innerWidth < 768 ? 32 : 36;
-  const getGap = () => window.innerWidth < 768 ? 20 : 30;
+  const getBoxSize = () => window.innerWidth < 768 ? 100 : 140;
+  const getDotSize = () => window.innerWidth < 768 ? 30 : 36;
+  const getGap = () => window.innerWidth < 768 ? 15 : 30;
 
   function updateCounters() {
     DOM.boxCountText.textContent = `${boxes.length} Kotak`;
@@ -263,11 +261,12 @@
   function arrangeAutoBoxes() {
     const GRID_SIZE = 30; const BOX_WIDTH = getBoxSize(); const GAP = getGap(); 
     const isMobile = window.innerWidth < 768;
-    const headerClearance = isMobile ? 150 : 220; 
-    const startY = Math.max(headerClearance, Math.round((window.innerHeight * (isMobile ? 0.28 : 0.35)) / GRID_SIZE) * GRID_SIZE);
     
-    // Memberikan padding dinamis agar kotak tidak menempel ke pinggir layar hp
-    const maxPerRow = Math.max(1, Math.floor((window.innerWidth - 30) / (BOX_WIDTH + GAP)));
+    // Titik aman Y agar tidak bertabrakan dengan Title di atas
+    const headerHeight = isMobile ? 120 : 180; 
+    const startY = Math.max(headerHeight, Math.round((window.innerHeight * (isMobile ? 0.22 : 0.30)) / GRID_SIZE) * GRID_SIZE);
+    
+    const maxPerRow = Math.max(1, Math.floor((window.innerWidth - 20) / (BOX_WIDTH + GAP)));
 
     autoLayoutBoxes.forEach((box, index) => {
       const row = Math.floor(index / maxPerRow); const col = index % maxPerRow;
@@ -304,15 +303,12 @@
   function loadProblem() {
     if (currentMode === 'multiplication') {
       DOM.modeTitle.textContent = "Mode Perkalian"; DOM.modeTitle.className = "text-[10px] md:text-sm font-semibold tracking-widest uppercase opacity-90 text-indigo-400";
-      DOM.nextProblemBtn.className = "p-3 md:py-3 md:px-5 bg-indigo-500 hover:bg-indigo-400 text-white rounded-[1rem] md:rounded-2xl font-bold shadow-lg shadow-indigo-500/20 transition-all active:scale-95 flex items-center gap-2";
     } else {
       DOM.modeTitle.textContent = "Mode Pembagian"; DOM.modeTitle.className = "text-[10px] md:text-sm font-semibold tracking-widest uppercase opacity-90 text-teal-400";
-      DOM.nextProblemBtn.className = "p-3 md:py-3 md:px-5 bg-teal-500 hover:bg-teal-400 text-white rounded-[1rem] md:rounded-2xl font-bold shadow-lg shadow-teal-500/20 transition-all active:scale-95 flex items-center gap-2";
     }
     clearCanvas();
   }
 
-  // --- LOGIKA EVALUASI SUPER KETAT ---
   function checkProblemSolved() {
     const totalDots = dots.length;
     const totalBoxes = boxes.length;
@@ -322,11 +318,8 @@
 
     if (totalDots === 0 && totalBoxes === 0) {
       isCurrentlySolved = false;
-      if (currentMode === 'multiplication') {
-        DOM.problemTitle.textContent = `${MULTIPLICATION_PROBLEMS[currentProblemIdx].a} × ${MULTIPLICATION_PROBLEMS[currentProblemIdx].b} = ?`;
-      } else {
-        DOM.problemTitle.textContent = `${DIVISION_PROBLEMS[currentProblemIdx].total} ÷ ${DIVISION_PROBLEMS[currentProblemIdx].divisor} = ?`;
-      }
+      if (currentMode === 'multiplication') DOM.problemTitle.textContent = `${MULTIPLICATION_PROBLEMS[currentProblemIdx].a} × ${MULTIPLICATION_PROBLEMS[currentProblemIdx].b} = ?`;
+      else DOM.problemTitle.textContent = `${DIVISION_PROBLEMS[currentProblemIdx].total} ÷ ${DIVISION_PROBLEMS[currentProblemIdx].divisor} = ?`;
       DOM.problemTitle.classList.remove('text-green-400'); DOM.problemTitle.classList.add('text-white');
       DOM.feedbackText.innerHTML = getBaseInstruction();
       DOM.feedbackText.className = baseFeedbackClass + 'opacity-100 bg-slate-800/90 text-slate-200 border-slate-600';
@@ -347,25 +340,20 @@
 
     if (isStrictSuccess) {
       if(!isCurrentlySolved) { SoundFX.success(); isCurrentlySolved = true; }
-      
       if (currentMode === 'multiplication') {
-        const p = MULTIPLICATION_PROBLEMS[currentProblemIdx];
-        const additionArray = Array(p.a).fill(p.b);
+        const p = MULTIPLICATION_PROBLEMS[currentProblemIdx]; const additionArray = Array(p.a).fill(p.b);
         DOM.problemTitle.textContent = `${p.a} × ${p.b} = ${additionArray.join(' + ')} = ${p.result}`;
         DOM.feedbackText.innerHTML = `🎉 Hebat! Konsep perkalian berulangmu sangat tepat!`;
       } else {
-        const p = DIVISION_PROBLEMS[currentProblemIdx];
-        const subtractionArray = Array(p.result).fill(p.divisor);
+        const p = DIVISION_PROBLEMS[currentProblemIdx]; const subtractionArray = Array(p.result).fill(p.divisor);
         DOM.problemTitle.textContent = `${p.total} ÷ ${p.divisor} = ${p.result}`;
-        DOM.feedbackText.innerHTML = `🎉 Hebat! Pengurangan berulang sampai habis:<br><strong class="text-base md:text-xl my-1 block">${p.total} ÷ ${p.divisor} ➔ ${p.total} - ${subtractionArray.join(' - ')} = 0</strong><span class="text-[11px] md:text-base font-medium text-green-100">Proses pengurangannya terjadi ${p.result} kali, maka hasilnya adalah ${p.result}.</span>`;
+        DOM.feedbackText.innerHTML = `🎉 Hebat! Pengurangan berulang sampai habis:<br><strong class="text-sm md:text-xl my-1 block">${p.total} ÷ ${p.divisor} ➔ ${p.total} - ${subtractionArray.join(' - ')} = 0</strong><span class="text-[10px] md:text-base font-medium text-green-100">Proses ini terjadi ${p.result} kali, maka hasilnya adalah ${p.result}.</span>`;
       }
       DOM.problemTitle.classList.replace('text-white', 'text-green-400');
       DOM.feedbackText.className = baseFeedbackClass + 'opacity-100 bg-green-500/90 text-white border-green-400';
     } 
     else if (isCommutativeSuccess) {
-      isCurrentlySolved = false;
-      DOM.problemTitle.classList.replace('text-green-400', 'text-white');
-      
+      isCurrentlySolved = false; DOM.problemTitle.classList.replace('text-green-400', 'text-white');
       if (currentMode === 'multiplication') {
         DOM.problemTitle.textContent = `${MULTIPLICATION_PROBLEMS[currentProblemIdx].a} × ${MULTIPLICATION_PROBLEMS[currentProblemIdx].b} = ?`;
         setFeedback(`Hampir sempurna! Ingat: ${targetBoxes} × ${targetDotsPerBox} artinya <strong>${targetBoxes} kotak</strong> berisi <strong>${targetDotsPerBox} titik</strong>. Yuk tukar posisinya!`, 'amber');
@@ -375,24 +363,16 @@
       }
     } 
     else {
-      isCurrentlySolved = false;
-      DOM.problemTitle.classList.replace('text-green-400', 'text-white');
+      isCurrentlySolved = false; DOM.problemTitle.classList.replace('text-green-400', 'text-white');
       if (currentMode === 'multiplication') DOM.problemTitle.textContent = `${MULTIPLICATION_PROBLEMS[currentProblemIdx].a} × ${MULTIPLICATION_PROBLEMS[currentProblemIdx].b} = ?`;
       else DOM.problemTitle.textContent = `${DIVISION_PROBLEMS[currentProblemIdx].total} ÷ ${DIVISION_PROBLEMS[currentProblemIdx].divisor} = ?`;
 
-      if (totalDots > targetTotalDots) {
-        setFeedback(`Terlalu banyak titik di layar! Buang ke tong sampah.`, 'rose');
-      } else if (totalBoxes > targetBoxes && totalBoxes !== targetDotsPerBox) {
-        setFeedback(`Jumlah kotak terlalu banyak. Perhatikan kembali angka pada soal!`, 'rose');
-      } else if (totalDots === targetTotalDots) {
-        if (dotsOutside > 0) {
-          setFeedback(`Total titik sudah pas! Masukkan titik yang tercecer ke dalam kotak.`, 'amber');
-        } else {
-          setFeedback(`Total titik pas, tapi susunannya belum tepat. Cek lagi soal untuk menentukan kotak dan isinya!`, 'blue');
-        }
-      } else {
-        setFeedback(getBaseInstruction(), 'slate');
-      }
+      if (totalDots > targetTotalDots) setFeedback(`Terlalu banyak titik di layar! Buang ke tong sampah.`, 'rose');
+      else if (totalBoxes > targetBoxes && totalBoxes !== targetDotsPerBox) setFeedback(`Jumlah kotak terlalu banyak. Perhatikan kembali angka pada soal!`, 'rose');
+      else if (totalDots === targetTotalDots) {
+        if (dotsOutside > 0) setFeedback(`Total titik sudah pas! Masukkan titik yang tercecer ke dalam kotak.`, 'amber');
+        else setFeedback(`Total titik pas, tapi susunannya belum tepat. Cek lagi soal untuk menentukan kotak dan isinya!`, 'blue');
+      } else setFeedback(getBaseInstruction(), 'slate');
     }
   }
 
@@ -565,11 +545,8 @@
   });
   DOM.resetBtn.addEventListener('click', clearCanvas);
   
-  // Update ukuran dan atur ulang layout saat layar di-resize atau orientasi diputar (potrait/landscape)
-  window.addEventListener('resize', () => {
-    arrangeAutoBoxes();
-  });
-  
+  // Posisikan kotak otomatis saat diputar landscape/portrait
+  window.addEventListener('resize', arrangeAutoBoxes);
   window.addEventListener('DOMContentLoaded', () => { lucide.createIcons(); });
   </script>
 </body>
