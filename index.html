@@ -11,7 +11,6 @@
   
   <style>
     :root {
-      /* Ukuran elemen otomatis mengecil di HP agar tidak penuh */
       --box-size: 100px;
       --dot-size: 30px;
       --dot-inside: 26px;
@@ -55,7 +54,7 @@
       background: rgba(255, 255, 255, 0.05); border: 3px dashed rgba(255, 255, 255, 0.3);
       cursor: grab; z-index: 20; backdrop-filter: blur(4px);
       transition: border-color 0.2s, background-color 0.2s, transform 0.2s, left 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), top 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-      display: flex; flex-wrap: wrap; align-content: flex-start; justify-content: center; gap: 6px; padding: 10px;
+      display: flex; flex-wrap: wrap; align-content: flex-start; justify-content: center; gap: 10px; padding: 14px; /* Penyesuaian gap dan padding */
       will-change: transform, left, top;
     }
     .box:hover { border-color: rgba(255,255,255,0.6); background: rgba(255, 255, 255, 0.08); }
@@ -251,7 +250,8 @@
   const randItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
   const getBoxSize = () => window.innerWidth < 768 ? 85 : 120;
   const getDotSize = () => window.innerWidth < 768 ? 28 : 34;
-  const getGap = () => window.innerWidth < 768 ? 15 : 20;
+  // Memperbesar jarak (gap) antar kotak sedikit lebih renggang
+  const getGap = () => window.innerWidth < 768 ? 25 : 35;
 
   function updateCounters() {
     DOM.boxCountText.textContent = `${boxes.length} Kotak`;
@@ -264,26 +264,44 @@
       : 'Buat kotak dan kelompokkan titik ke dalamnya sesuai konsep pengurangan berulang.';
   }
 
+  // DIUBAH: Fungsi ini sekarang akan membaca tinggi dinamis kotak yang mungkin merenggang ke bawah
   function arrangeAutoBoxes() {
-    const GRID_SIZE = 30; const BOX_WIDTH = getBoxSize(); const GAP = getGap(); 
+    const BOX_WIDTH = getBoxSize(); 
+    const GAP = getGap(); 
     const isMobile = window.innerWidth < 768;
+    const GRID_SIZE = 30;
     
-    // Jarak Y dijamin tidak menabrak header di atas
     const headerHeight = isMobile ? 180 : 220; 
     const startY = Math.max(headerHeight, Math.round((window.innerHeight * (isMobile ? 0.35 : 0.35)) / GRID_SIZE) * GRID_SIZE);
     
     const maxPerRow = Math.max(1, Math.floor((window.innerWidth - 20) / (BOX_WIDTH + GAP)));
 
+    // Simpan tinggi maksimal dari tiap baris
+    const rowHeights = [];
     autoLayoutBoxes.forEach((box, index) => {
-      const row = Math.floor(index / maxPerRow); const col = index % maxPerRow;
+      const row = Math.floor(index / maxPerRow);
+      // Baca tinggi elemen aslinya secara real-time
+      const height = box.el.offsetHeight || BOX_WIDTH;
+      if (!rowHeights[row] || height > rowHeights[row]) {
+        rowHeights[row] = height;
+      }
+    });
+
+    autoLayoutBoxes.forEach((box, index) => {
+      const row = Math.floor(index / maxPerRow); 
+      const col = index % maxPerRow;
       const boxesInThisRow = Math.min(autoLayoutBoxes.length - row * maxPerRow, maxPerRow);
       const totalWidth = (boxesInThisRow * BOX_WIDTH) + ((boxesInThisRow - 1) * GAP);
       
-      // Hapus pembulatan GRID_SIZE pada startX agar selalu 100% di tengah meskipun jumlah genap
       const targetX = ((window.innerWidth - totalWidth) / 2) + col * (BOX_WIDTH + GAP);
-      const targetY = startY + row * (BOX_WIDTH + GAP);
+      
+      let targetY = startY;
+      for (let i = 0; i < row; i++) {
+        targetY += rowHeights[i] + GAP;
+      }
 
-      box.el.style.left = `${targetX}px`; box.el.style.top = `${targetY}px`;
+      box.el.style.left = `${targetX}px`; 
+      box.el.style.top = `${targetY}px`;
     });
   }
 
@@ -436,6 +454,8 @@
         dot.el.classList.replace('dot-inside', 'dot'); dot.el.style.position = 'absolute'; DOM.canvas.appendChild(dot.el);
         dot.el.style.left = `${rect.left}px`; dot.el.style.top = `${rect.top}px`; dot.boxId = null;
         SoundFX.pop(); checkProblemSolved();
+        // Kalkulasi ulang layout ketika titik ditarik KELUAR dari kotak (kotak mengecil)
+        arrangeAutoBoxes();
       }
       const r = dot.el.getBoundingClientRect();
       dragging = { type: 'dot', id: dot.id, el: dot.el, offsetX: clientX - r.left, offsetY: clientY - r.top };
@@ -492,6 +512,8 @@
       const dot = dots.find(d => d.id === dragging.id); const box = getBoxAt(clientX, clientY);
       if (box && dot) {
         SoundFX.drop(); dot.el.classList.replace('dot', 'dot-inside'); dot.el.style.position = 'relative'; dot.el.style.left = ''; dot.el.style.top = ''; box.el.appendChild(dot.el); dot.boxId = box.id;
+        // Kalkulasi ulang layout ketika titik di-drop MASUK ke dalam kotak (kotak membesar)
+        arrangeAutoBoxes();
       } else if (dot) {
         SoundFX.trash(); dot.el.style.transform = 'scale(0)'; setTimeout(() => dot.el.remove(), 150); dots = dots.filter(d => d.id !== dragging.id);
       }
